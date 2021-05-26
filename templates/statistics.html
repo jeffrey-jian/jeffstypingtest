@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Statistics
+{% endblock %}
+
+{% block main %}
+    <h3>Total number of tests done: {{ total_test }}</h3>
+    <h3>Total average WPM: {{ total_avg_wpm }}</h3>
+    <br>
+    <h4>Your number of tests done: {{ tests_done }}</h4>
+    <h4>Your average WPM: {{ average_wpm }}</h4>
+    <h4>Your highest WPM: {{ max_wpm }}</h4>
+    <h4>Your lowest WPM: {{ min_wpm }}</h4>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    test1
+{% endblock %}
+
+{% block main %}
+
+     <button onclick="start()">start</button>
+     <button onclick="stop()">stop</button>
+
+
+  <script>
+    var isFunctionCalled = false;
+    var starttime = 0;
+
+    function stop() {
+
+            stoptime = new Date();
+            console.log(stoptime)
+            timetaken = stoptime - starttime;
+            console.log(timetaken)
+
+
+    }
+
+    function start() {
+
+        if (!isFunctionCalled) {
+            starttime = new Date();
+            console.log(starttime)
+            isFunctionCalled = true;
+        }
+
+    }
+
+
+  </script>
+{% endblock %}

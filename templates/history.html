@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My History
+{% endblock %}
+
+{% block main %}
+    <h2>{{ name }}'s History</h2>
+    <br>
+    <button onclick="deletecheck()">Delete History</button>
+    <br>
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope='col'>Date and Time</th>
+                <th scope='col'>Text</th>
+                <th scope='col'>WPM</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            {% for item in table %}
+                <td>{{ item["time"] }}</td>
+                <td>{{ item["title"] }}</td>
+                <td>{{ item["wpm"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function deletecheck() {
+            console.log("delete?")
+            if (confirm('Are you sure you want to delete your history from the database?')) {
+                // Delete it!
+                console.log('DELETED');
+                window.location.href = "/deletehistory";
+            } else {
+                // Do nothing!
+                console.log('NOT DELETED');
+            }
+        }
+    </script>
+{% endblock %}

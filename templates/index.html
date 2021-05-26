@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block main %}
+    {% if name != 'guest' %}
+    <h1>Good day, {{ name }}!</h1>
+    <br>
+    <h5>You have done <b><u>{{ tests_done }}</u></b> typing tests. </h5>
+    <h5>Your average WPM is <b><u>{{ average_wpm }}</u></b>.</h5>
+
+    {% else %}
+    <h2>Good day!</h2>
+    <br>
+    <h3>Create an account to record your typing speeds and access additional features!</h3>
+
+    {% endif %}
+
+    <br>
+    <p>Use the nav bar above to navigate the website!</p>
+{% endblock %}

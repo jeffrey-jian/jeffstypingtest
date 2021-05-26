@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Upload
+{% endblock %}
+
+{% block main %}
+    <h2>Upload your own text here!</h2>
+    <br>
+    <form id="input_text" action="/upload" method="post">
+
+        <div class='form-group'>
+            <h5>Title:</h5>
+            <textarea cols="70" name="titleupload" placeholder="Your Title Here..." autofocus></textarea>
+        </div>
+
+        <div class='form-group'>
+            <h5>Text:</h5>
+            <textarea cols="100" name="textupload" placeholder="Copy and Paste or Type your text here..." autofocus></textarea>
+        </div>
+        <p>Remember to check for typos before submitting!</p>
+        <button onclick="return confirm('Confirm Submission?')" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+{% endblock %}

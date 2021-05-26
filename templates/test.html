@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Test
+{% endblock %}
+
+{% block main %}
+    <h3>You have chosen {{ title }}.</h3>
+    <a href="/selecttext">Choose another text</a>
+
+    <!-- text will appear based on what is selected -->
+    <textarea id="textbox" rows="8" cols="100" readonly>{{ text }}</textarea>
+
+    <!-- when tap any key, timer will start -->
+    <form id="input_text" action="/submittext" method="post">
+         <textarea name = "typed_text" id="inputbox" onkeyup="startwatch()" cols="100" rows="8" placeholder="Test your speed from here..." autofocus></textarea>
+    </form>
+
+    <script>
+    var isFunctionCalled = false;
+    var starttime = 0;
+    var stoptime = 0;
+
+        function startwatch() {
+            if (!isFunctionCalled) {
+                starttime = new Date();
+                console.log(starttime);
+                isFunctionCalled = true;
+            }
+        }
+
+        function stop() {
+            stoptime = new Date();
+            console.log(stoptime);
+            var timetaken = stoptime - starttime;
+            console.log(timetaken);
+
+            document.getElementById('input_text').submit();
+
+            $.ajax({
+                type: "POST",
+                url: "/submittest",
+                contentType: "application/json",
+                data: JSON.stringify(timetaken),
+                dataType: "json",
+                success: function(response) {
+                        document.getElementById("input_text").submit();
+                        window.location.href = "/submittest";
+                },
+                error: function(err) {
+                    alert("error");
+                }
+            });
+        }
+
+        function disableinput() {
+            document.getElementById("inputbox").disabled = true;
+        }
+
+        document.addEventListener("keyup", function(event) {
+            var value = document.getElementById('inputbox').value;
+            console.log(value)
+            if (event.keyCode === 13) {
+                if (value.length != 0) {
+                    stop();
+                    disableinput();
+                }
+            }
+        });
+
+    </script>
+{% endblock %}
